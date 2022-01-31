@@ -22,6 +22,9 @@ Route::middleware('auth')
 ->prefix('admin')
 ->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
+
+    //Book rescource routes
+    Route::resource('/books', 'BookController');
 });
 
 //Home front-office route
