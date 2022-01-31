@@ -13,16 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guests.home_page');
-});
-
 Auth::routes();
 
- Route::middleware('auth')
-    ->namespace('Admin')
-    ->name('admin.')
-    ->prefix('admin')
-    ->group(function() {
-        Route::get('/', 'HomeController@index')->name('home');
-    });
+//Admin route
+Route::middleware('auth')
+->namespace('Admin')
+->name('admin.')
+->prefix('admin')
+->group(function() {
+    Route::get('/', 'HomeController@index')->name('home');
+});
+
+//Home front-office route
+Route::get('{any?}', function () {
+    return view('guests.home');
+})->where('any', '.*');
