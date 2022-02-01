@@ -3,10 +3,10 @@
 @section('content')
 <section class="py-3">
     <div class="container">
-        <h1>Books List</h1>
+        <h1 class="text-center">Books List</h1>
 
         @if (session('deleted'))
-            <div class="alert alert-warning">
+            <div class="alert alert-success border border-success text-center text-decoration-underline fs-6 opacity-an">
                 {{ session('deleted') }}
                 deleted successfully!
             </div>
@@ -18,12 +18,12 @@
         @else
             <table class="table table-light table-hover my-4">
                 <thead class="table-light">
-                    <tr>
-                        <td>Id</td>
-                        <td>Title</td>
-                        <td>Author</td>
-                        <td>Content</td>
-                        <td colspan="3" class="text-center">Actions</td>
+                    <tr class="fw-bolder">
+                        <td scope="col">Id</td>
+                        <td scope="col">Title</td>
+                        <td scope="col">Author</td>
+                        <td scope="col">Content</td>
+                        <td scope="col" colspan="3" class="text-center">Actions</td>
                     </tr>
                 </thead>
 

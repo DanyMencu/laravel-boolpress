@@ -1,0 +1,23 @@
+//Opacity animation
+.opacity-an {
+    opacity: 0;
+    animation: opacity 5s linear;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

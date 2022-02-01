@@ -5,7 +5,7 @@
         <h1 class="mb-5">Add a new book</h1>
 
         {{-- In case of error --}}
-        @if ($errors->any()) {
+        @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ( $errors->all() as $error )
@@ -13,7 +13,7 @@
                     @endforeach
                 </ul>
             </div>
-        }@endif
+        @endif
 
         <form action="{{ route('admin.books.store') }}" method="POST">
         @csrf
