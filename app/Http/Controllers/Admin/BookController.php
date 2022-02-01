@@ -30,7 +30,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        //Add new book
+        return view('admin.books.create');
     }
 
     /**
@@ -41,7 +42,40 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validation
+        $request->validate([
+            'title' => 'required|unique:books',
+            'author' => 'required|max:255',
+            'content' => 'required',
+        ], [//Custom errors message
+            'required' => 'The :attribute is a required field!',
+            'max' => 'Max :max characters allowed for the :attribute',
+            'unique' => 'Sorry but the :attribute must be unique.',
+        ]);
+
+        //Register new book
+        $data = $request->all();
+
+        //Create a new book
+        $new_book = new Book();
+
+        //Gen unique slug
+        $slug = Str::slug($data['title'], '-');
+        $count = 1;
+
+        //Unique validation
+        while(Book::where('slug', $slug)->first()) {
+            $slug .= '-' . $count;
+            $count++;
+        }
+
+        //Create a slug inside DATA array
+        $data['slug'] = $slug;
+
+        $new_book->fill($data);
+        $new_book->save();
+
+        return redirect()->route('admin.books.show', $new_book->slug);
     }
 
     /**
@@ -50,9 +84,16 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        //Show book details
+        $book = Book::where('slug', $slug)->first();
+        
+        if(! $book) {
+            abort(404);
+        }
+
+        return view('admin.books.show', compact('book'));
     }
 
     /**

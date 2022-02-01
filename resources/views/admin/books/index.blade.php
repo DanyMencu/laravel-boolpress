@@ -29,7 +29,7 @@
                             <td>{{ $book->content }}</td>
                             <td>
                                 <a class="btn btn-primary"
-                                href="{{ route('admin.books.show', $book->id) }}">
+                                href="{{ route('admin.books.show', $book->slug) }}">
                                     Details
                                 </a>
                             </td>

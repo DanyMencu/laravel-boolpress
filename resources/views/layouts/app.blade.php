@@ -35,7 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a href="{{ url('guests.home') }}" target='_blank' class="nav-link
-                            @if(Request::route()->getName() == 'guests.home') active @endif">Front office</a>
+                            @if(Request::route()->getName() == 'guests.home') active @endif">Public Homepage</a>
                         </li>
                     </ul>
 
@@ -60,7 +60,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.books.create') }}" class="nav-link
                                 @if(Request::route()->getName() == 'admin.books.create') active @endif
-                                ">Create New Book</a>
+                                ">Add New Book</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
