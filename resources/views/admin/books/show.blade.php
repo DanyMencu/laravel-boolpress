@@ -20,8 +20,8 @@
                 </li>
                 <li class="list-group-item">
                     <strong>Actions: </strong>
-                    <a href="{{ route('admin.books.index') }}" class="btn btn-primary my-2">Return to list</a>
-                    <a href="{{ route('admin.books.edit') }}" class="btn btn-warning my-2">Edit book details</a>
+                    <a href="{{ route('admin.books.index') }}" class="btn btn-primary mx-2">Return to list</a>
+                    <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-warning mx-2">Edit book details</a>
                 </li>
             </ul>
         </div>

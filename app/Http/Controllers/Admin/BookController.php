@@ -43,7 +43,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //Validation
-        $request->validate([
+        /*         $request->validate([
             'title' => 'required|unique:books',
             'author' => 'required|max:255',
             'content' => 'required',
@@ -51,7 +51,8 @@ class BookController extends Controller
             'required' => 'The :attribute is a required field!',
             'max' => 'Max :max characters allowed for the :attribute',
             'unique' => 'Sorry but the :attribute must be unique.',
-        ]);
+        ]); */
+        $request->validate($this->validation_rules(), $this->validation_messages());
 
         //Register new book
         $data = $request->all();
@@ -62,10 +63,11 @@ class BookController extends Controller
         //Gen unique slug
         $slug = Str::slug($data['title'], '-');
         $count = 1;
+        $base_slug = $slug;
 
         //Unique validation
         while(Book::where('slug', $slug)->first()) {
-            $slug .= '-' . $count;
+            $slug = $base_slug . '-' . $count;
             $count++;
         }
 
@@ -104,7 +106,14 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Edit a book
+        $book = Book::find($id);
+
+        if (!$book) {
+            abort(404);
+        }
+
+        return view('admin.books.edit', compact('book'));
     }
 
     /**
@@ -116,7 +125,37 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Update book details
+        //Validation
+        $request->validate($this->validation_rules(), $this->validation_messages());
+
+        $data = $request->all();
+
+        $book = Book::find($id);
+
+        //Slug update if title is changed
+        if($data['title'] != $book->title) {
+            //Gen unique slug
+            $slug = Str::slug($data['title'], '-');
+            $count = 1;
+            $base_slug = $slug;
+
+            //Unique validation
+            while (Book::where('slug', $slug)->first()) {
+                $slug = $base_slug . '-' . $count;
+                $count++;
+            }
+
+            //Create a slug inside DATA array
+            $data['slug'] = $slug;
+        }
+        else {
+            $data['slug'] = $book->slug;
+        };
+
+        $book->update($data);
+
+        return redirect()->route('admin.books.show', $book->slug);
     }
 
     /**
@@ -127,6 +166,28 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete a book record
+        $book = Book::find($id);
+
+        $book->delete();
+
+        return redirect()->route('admin.books.index')->with('deleted', $book->title);
+        }
+
+
+    //*Validation RULES
+    private function validation_rules() {
+        return [
+            'title' => 'required|unique:books',
+            'author' => 'required|max:255',
+            'content' => 'required',
+        ];
+    }
+    private function validation_messages() {
+        return [
+            'required' => 'The :attribute is a required field!',
+            'max' => 'Max :max characters allowed for the :attribute',
+            'unique' => 'Sorry but the :attribute must be unique.',
+        ];
     }
 }

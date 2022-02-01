@@ -13,10 +13,10 @@
                     <h3>What to do next?</h3>
                     <ul>
                         <li>
-                            <a href="">Books list</a>
+                            <a href="{{ route('admin.books.index') }}">Books list</a>
                         </li>
                         <li>
-                            <a href="">Register new book?</a>
+                            <a href="{{ route('admin.books.create') }}">Register new book?</a>
                         </li>
                     </ul>
                 </div>

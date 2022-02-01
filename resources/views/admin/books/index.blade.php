@@ -5,6 +5,13 @@
     <div class="container">
         <h1>Books List</h1>
 
+        @if (session('deleted'))
+            <div class="alert alert-warning">
+                {{ session('deleted') }}
+                deleted successfully!
+            </div>
+        @endif
+
         @if ($books->isEmpty())
             Sorry, no boos found yet.
             <a href="{{ route('admin.books.create') }}">Create a new one</a>
