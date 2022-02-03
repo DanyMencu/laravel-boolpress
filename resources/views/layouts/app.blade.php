@@ -54,11 +54,13 @@
                                 </li>
                             @endif
                         @else
+                            {{-- Index/Book list --}}
                             <li class="nav-item">
                                 <a href="{{ route('admin.books.index') }}" class="nav-link
                                 @if(Request::route()->getName() == 'admin.books.index') active @endif
                                 ">Books List</a>
                             </li>
+                            {{-- Create/Add new book --}}
                             <li class="nav-item">
                                 <a href="{{ route('admin.books.create') }}" class="nav-link
                                 @if(Request::route()->getName() == 'admin.books.create') active @endif

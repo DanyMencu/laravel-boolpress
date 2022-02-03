@@ -13,7 +13,7 @@
         @endif
 
         @if ($books->isEmpty())
-            Sorry, no boos found yet.
+            Sorry, no books found yet.
             <a href="{{ route('admin.books.create') }}">Create a new one</a>
         @else
             <table class="table table-light table-hover my-4">
@@ -33,7 +33,15 @@
                         <tr>
                             <td>{{ $book->id }}</td>
                             <td>{{ $book->title }}</td>
-                            <td>{{ $book->genre->name }}</td>
+                            <td>
+                                @if ($book->genre)
+                                    <a href="{{ route('admin.genre', $book->genre->id) }}">
+                                        {{ $book->genre->name }}
+                                    </a>
+                                @else
+                                    No genre
+                                @endif
+                            </td>
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->content }}</td>
                             <td>

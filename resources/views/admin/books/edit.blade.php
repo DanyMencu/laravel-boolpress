@@ -43,7 +43,7 @@
 
             {{-- Genre --}}
             <div class="mb-3">
-                <label for="genre_id" class="form-label">Category</label>
+                <label for="genre_id" class="form-label">Genre</label>
                 <select name="genre_id" id="genre_id" class="form-control">
                     <option value="">No genre</option>
                     @foreach ($genres as $genre)

@@ -25,6 +25,10 @@ Route::middleware('auth')
 
     //Book rescource routes
     Route::resource('/books', 'BookController');
+
+    //Genre route
+    Route::get('/genres/{id}', 'GenreController@show')->name('genre');
+    
 });
 
 //Home front-office route

@@ -15,9 +15,11 @@
                 <li class="list-group-item">
                     <strong>Genre: </strong> 
                     @if ($book->genre)
-                        
+                        <a href="{{ route('admin.genre', $book->genre->id) }}">
+                            {{ $book->genre->name }}
+                        </a>
                     @else
-                        
+                        No genre
                     @endif
                 </li>
                 <li class="list-group-item">

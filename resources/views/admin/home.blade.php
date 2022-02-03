@@ -18,6 +18,9 @@
                         <li>
                             <a href="{{ route('admin.books.create') }}">Register new book?</a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.genres.show') }}">Show all generes</a>
+                        </li>
                     </ul>
                 </div>
             </div>

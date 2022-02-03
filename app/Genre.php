@@ -8,6 +8,6 @@ class Genre extends Model
 {
     //Relation with books
     public function books() {
-        return $this->hasMany('App\Genre');
+        return $this->hasMany('App\Book');
     }
 }
