@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Book;
+use App\Genre;
 
 class BookController extends Controller
 {
@@ -30,8 +31,11 @@ class BookController extends Controller
      */
     public function create()
     {
+        //Find genres
+        $genres = Genre::all();
+
         //Add new book
-        return view('admin.books.create');
+        return view('admin.books.create', compact('genres'));
     }
 
     /**
@@ -181,6 +185,7 @@ class BookController extends Controller
             'title' => 'required|unique:books',
             'author' => 'required|max:255',
             'content' => 'required',
+            'genre_id' => 'nullable|exists:genres,id',
         ];
     }
     private function validation_messages() {
@@ -188,6 +193,7 @@ class BookController extends Controller
             'required' => 'The :attribute is a required field!',
             'max' => 'Max :max characters allowed for the :attribute',
             'unique' => 'Sorry but the :attribute must be unique.',
+            'genre_id.exists' => 'Sorry but the genre selected does not exists'
         ];
     }
 }
