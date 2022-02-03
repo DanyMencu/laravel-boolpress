@@ -18,6 +18,7 @@ class BooksTableSeeder extends Seeder
         for($i = 0; $i < 5; $i++) {
             $new_book = new Book();
 
+            $new_book->genre_id = rand(1, 11);
             $new_book->title = 'Book title ' . ($i + 1);
             $new_book->slug = Str::slug($new_book->title, '-');
             $new_book->author = 'Book author ' . ($i + 1);
