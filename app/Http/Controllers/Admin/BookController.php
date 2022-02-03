@@ -193,7 +193,7 @@ class BookController extends Controller
             'required' => 'The :attribute is a required field!',
             'max' => 'Max :max characters allowed for the :attribute',
             'unique' => 'Sorry but the :attribute must be unique.',
-            'genre_id.exists' => 'Sorry but the genre selected does not exists'
+            'genre_id.exists' => 'Sorry but the genre selected does not exist',
         ];
     }
 }

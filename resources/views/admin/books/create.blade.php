@@ -54,7 +54,7 @@
                 </select>
 
                 {{-- Genre error advertising --}}
-                @error('genre')
+                @error('genre_id')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
