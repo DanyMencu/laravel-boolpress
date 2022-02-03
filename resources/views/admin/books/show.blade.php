@@ -13,6 +13,14 @@
                     <strong>Title: </strong> {{ $book->title }}
                 </li>
                 <li class="list-group-item">
+                    <strong>Genre: </strong> 
+                    @if ($book->genre)
+                        
+                    @else
+                        
+                    @endif
+                </li>
+                <li class="list-group-item">
                     <strong>Author: </strong> {{ $book->author }}
                 </li>
                 <li class="list-group-item">

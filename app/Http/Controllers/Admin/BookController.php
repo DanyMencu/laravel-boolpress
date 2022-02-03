@@ -19,7 +19,7 @@ class BookController extends Controller
     public function index()
     {
         //Shoow all books
-        $books = Book::paginate(3);
+        $books = Book::paginate(5);
 
         return view('admin.books.index', compact('books'));
     }
@@ -56,7 +56,7 @@ class BookController extends Controller
             'max' => 'Max :max characters allowed for the :attribute',
             'unique' => 'Sorry but the :attribute must be unique.',
         ]); */
-        $request->validate($this->validation_rules(), $this->validation_messages());
+        $request->validate($this->validation_rules(null), $this->validation_messages());
 
         //Register new book
         $data = $request->all();
@@ -112,12 +112,13 @@ class BookController extends Controller
     {
         //Edit a book
         $book = Book::find($id);
+        $genres = Genre::all();
 
         if (!$book) {
             abort(404);
         }
 
-        return view('admin.books.edit', compact('book'));
+        return view('admin.books.edit', compact('book', 'genres'));
     }
 
     /**
@@ -131,7 +132,7 @@ class BookController extends Controller
     {
         //Update book details
         //Validation
-        $request->validate($this->validation_rules(), $this->validation_messages());
+        $request->validate($this->validation_rules($id), $this->validation_messages());
 
         $data = $request->all();
 
@@ -180,9 +181,12 @@ class BookController extends Controller
 
 
     //*Validation RULES
-    private function validation_rules() {
+    private function validation_rules($id) {
+        //Validation if book id there is or not
+        $test = $id != null ? ',title,' . $id : '';
+
         return [
-            'title' => 'required|unique:books',
+            'title' => 'required|unique:books' . $test,
             'author' => 'required|max:255',
             'content' => 'required',
             'genre_id' => 'nullable|exists:genres,id',

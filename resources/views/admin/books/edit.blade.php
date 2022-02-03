@@ -5,7 +5,7 @@
         <h1 class="mb-5">Edit {{ $book->title }} book</h1>
 
         {{-- In case of error --}}
-        @if ($errors->any()) {
+        @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ( $errors->all() as $error )
@@ -13,7 +13,7 @@
                     @endforeach
                 </ul>
             </div>
-        }@endif
+        @endif
 
         <form action="{{ route('admin.books.update', $book->id) }}" method="POST">
         @csrf
@@ -23,26 +23,48 @@
             <div class="mb-3">
                 <label for="title" class="form-label">Title *</label>
                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $book->title) }}">
+                
+                {{-- Title error advertising --}}
+                @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
-            {{-- Title error advertising --}}
-            @error('title')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
 
             {{-- Author --}}
             <div class="mb-3">
                 <label for="author" class="form-label">Author *</label>
                 <input type="text" name="author" id="author" class="form-control" value="{{ old('author', $book->author) }}">
+
+                {{-- Author error advertising --}}
+                @error('author')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
-            {{-- Author error advertising --}}
-            @error('author')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
+
+            {{-- Genre --}}
+            <div class="mb-3">
+                <label for="genre_id" class="form-label">Category</label>
+                <select name="genre_id" id="genre_id" class="form-control">
+                    <option value="">No genre</option>
+                    @foreach ($genres as $genre)
+                        <option value="{{ $genre->id }}"
+                            @if ($genre->id == old('genre_id', $book->genre_id)) selected @endif>
+                            {{ $genre->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                {{-- Genre error advertising --}}
+                @error('genre_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
 
             {{-- Content --}}
             <div class="mb-3">
                 <label for="content">Content *</label>
                 <textarea name="content" id="content" class="form-control" rows="10">{{ old('content', $book->content) }}</textarea>
+
                 {{-- Content error advertising --}}
                 @error('content')
                     <div class="text-danger">{{ $message }}</div>

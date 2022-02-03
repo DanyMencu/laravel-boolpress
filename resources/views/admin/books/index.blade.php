@@ -21,6 +21,7 @@
                     <tr class="fw-bolder">
                         <td scope="col">Id</td>
                         <td scope="col">Title</td>
+                        <td scope="col">Genre</td>
                         <td scope="col">Author</td>
                         <td scope="col">Content</td>
                         <td scope="col" colspan="3" class="text-center">Actions</td>
@@ -32,6 +33,7 @@
                         <tr>
                             <td>{{ $book->id }}</td>
                             <td>{{ $book->title }}</td>
+                            <td>{{ $book->genre->name }}</td>
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->content }}</td>
                             <td>
