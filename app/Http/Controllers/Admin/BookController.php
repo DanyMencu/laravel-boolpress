@@ -120,12 +120,13 @@ class BookController extends Controller
         //Edit a book
         $book = Book::find($id);
         $genres = Genre::all();
+        $lenguages = Lenguage::all();
 
         if (!$book) {
             abort(404);
         }
 
-        return view('admin.books.edit', compact('book', 'genres'));
+        return view('admin.books.edit', compact('book', 'genres', 'lenguages'));
     }
 
     /**
@@ -166,6 +167,13 @@ class BookController extends Controller
         };
 
         $book->update($data);
+
+        //Save realtion between book and lenguages selected in a pivot table
+        if (array_key_exists('lenguages', $data)) {
+            $book->lenguages()->sync($data['lenguages']);
+        } else {
+            $book->lenguages()->detach();
+        }
 
         return redirect()->route('admin.books.show', $book->slug);
     }
