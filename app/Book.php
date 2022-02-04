@@ -9,6 +9,7 @@ class Book extends Model
     //Mass assignment
     protected $fillable = [
         'title',
+        'genre_id',
         'author',
         'slug',
         'content',

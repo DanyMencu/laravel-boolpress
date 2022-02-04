@@ -183,10 +183,10 @@ class BookController extends Controller
     //*Validation RULES
     private function validation_rules($id) {
         //Validation if book id there is or not
-        $test = $id != null ? ',title,' . $id : '';
+        $validation_id = $id != null ? ',title,' . $id : '';
 
         return [
-            'title' => 'required|unique:books' . $test,
+            'title' => 'required|unique:books' . $validation_id,
             'author' => 'required|max:255',
             'content' => 'required',
             'genre_id' => 'nullable|exists:genres,id',
