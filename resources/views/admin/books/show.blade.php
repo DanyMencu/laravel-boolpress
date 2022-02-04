@@ -9,9 +9,11 @@
                 <li class="list-group-item">
                     <strong>Id: </strong> {{ $book->id }}
                 </li>
+                {{-- Title --}}
                 <li class="list-group-item">
                     <strong>Title: </strong> {{ $book->title }}
                 </li>
+                {{-- Genre --}}
                 <li class="list-group-item">
                     <strong>Genre: </strong> 
                     @if ($book->genre)
@@ -22,11 +24,24 @@
                         No genre
                     @endif
                 </li>
+                {{-- Author --}}
                 <li class="list-group-item">
                     <strong>Author: </strong> {{ $book->author }}
                 </li>
+                {{-- Lenguage --}}
                 <li class="list-group-item">
-                    <strong>Content: </strong> {{ $book->content }}
+                    <strong>Lenguage: </strong> 
+                    @if ( $book->lenguages->isEmpty())
+                        Sorry no available language has been specified.
+                    @else
+                        @foreach ($book->lenguages as $lenguage)
+                            <span class="badge rounded-pill bg-success ms-1">{{ $lenguage->name }}</span>
+                        @endforeach
+                    @endif
+                </li>
+                {{-- Content --}}
+                <li class="list-group-item">
+                    <strong>Content: </strong> <br> {{ $book->content }}
                 </li>
                 <li class="list-group-item">
                     <strong>Actions: </strong>

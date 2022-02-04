@@ -29,6 +29,8 @@ Route::middleware('auth')
     //Genre route
     Route::get('/genres/{id}', 'GenreController@show')->name('genre');
     
+    //Lenguage route
+    Route::get('/lenguages/index', 'LenguageController@index');
 });
 
 //Home front-office route
