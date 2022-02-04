@@ -19,4 +19,9 @@ class Book extends Model
     public function genre() {
         return $this->belongsTo('App\Genre');
     }
+
+    //Relation with lenguages
+    public function lenguages() {
+        return $this->belongsToMany('App\Lenguage',);
+    }
 }
