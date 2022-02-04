@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookLenguageTable extends Migration
+class CreateBookLanguageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBookLenguageTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_lenguage', function (Blueprint $table) {
+        Schema::create('book_language', function (Blueprint $table) {
             $table->id();
             //ForeignKey book
             $table->unsignedBigInteger('book_id');
@@ -22,11 +22,11 @@ class CreateBookLenguageTable extends Migration
                 ->on('books')
                 ->onDelete('cascade');
 
-            //ForeignKey lenguage
-            $table->unsignedBigInteger('lenguage_id');
-            $table->foreign('lenguage_id')
+            //ForeignKey language
+            $table->unsignedBigInteger('language_id');
+            $table->foreign('language_id')
                 ->references('id')
-                ->on('lenguages')
+                ->on('languages')
                 ->onDelete('cascade');
 
             $table->timestamps();
@@ -40,6 +40,6 @@ class CreateBookLenguageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_lenguage');
+        Schema::dropIfExists('book_language');
     }
 }

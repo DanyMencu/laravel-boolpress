@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 use App\Book;
 use App\Genre;
-use App\Lenguage;
+use App\Language;
 
 class BookController extends Controller
 {
@@ -34,10 +34,10 @@ class BookController extends Controller
     {
         //Find genres
         $genres = Genre::all();
-        $lenguages = Lenguage::all();
+        $languages = Language::all();
 
         //Add new book
-        return view('admin.books.create', compact('genres', 'lenguages'));
+        return view('admin.books.create', compact('genres', 'languages'));
     }
 
     /**
@@ -83,9 +83,9 @@ class BookController extends Controller
         $new_book->fill($data);
         $new_book->save();
 
-        //Save realtion between book and lenguages selected in a pivot table
-        if(array_key_exists('lenguages', $data)) {
-            $new_book->lenguages()->attach($data['lenguages']);
+        //Save realtion between book and languages selected in a pivot table
+        if(array_key_exists('languages', $data)) {
+            $new_book->languages()->attach($data['languages']);
         }
 
         return redirect()->route('admin.books.show', $new_book->slug);
@@ -120,13 +120,13 @@ class BookController extends Controller
         //Edit a book
         $book = Book::find($id);
         $genres = Genre::all();
-        $lenguages = Lenguage::all();
+        $languages = Language::all();
 
         if (!$book) {
             abort(404);
         }
 
-        return view('admin.books.edit', compact('book', 'genres', 'lenguages'));
+        return view('admin.books.edit', compact('book', 'genres', 'languages'));
     }
 
     /**
@@ -168,11 +168,11 @@ class BookController extends Controller
 
         $book->update($data);
 
-        //Save realtion between book and lenguages selected in a pivot table
-        if (array_key_exists('lenguages', $data)) {
-            $book->lenguages()->sync($data['lenguages']);
+        //Save realtion between book and languages selected in a pivot table
+        if (array_key_exists('languages', $data)) {
+            $book->languages()->sync($data['languages']);
         } else {
-            $book->lenguages()->detach();
+            $book->languages()->detach();
         }
 
         return redirect()->route('admin.books.show', $book->slug);

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lenguage extends Model
+class Language extends Model
 {
     //Relation with books
     public function books() {

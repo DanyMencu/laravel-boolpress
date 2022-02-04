@@ -3,9 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-use App\Lenguage;
+use App\Language;
 
-class LenguagesTableSeeder extends Seeder
+class LanguagesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,16 +14,16 @@ class LenguagesTableSeeder extends Seeder
      */
     public function run()
     {
-        //Lenguages availables
-        $lenguages = ['Italian', 'English', 'Spanish', 'French', 'German', 'Chinese'];
+        //Languages availables
+        $languages = ['Italian', 'English', 'Spanish', 'French', 'German', 'Chinese'];
 
-        foreach ($lenguages as $lenguage) {
-            $new_lenguage = new Lenguage();
+        foreach ($languages as $language) {
+            $new_language = new Language();
 
-            $new_lenguage->name = $lenguage;
-            $new_lenguage->slug = Str::slug($lenguage);
+            $new_language->name = $language;
+            $new_language->slug = Str::slug($language);
 
-            $new_lenguage->save();
+            $new_language->save();
         }
     }
 }

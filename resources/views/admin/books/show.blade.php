@@ -28,14 +28,14 @@
                 <li class="list-group-item">
                     <strong>Author: </strong> {{ $book->author }}
                 </li>
-                {{-- Lenguage --}}
+                {{-- Language --}}
                 <li class="list-group-item">
-                    <strong>Lenguage: </strong> 
-                    @if ( $book->lenguages->isEmpty())
+                    <strong>Language: </strong> 
+                    @if ( $book->languages->isEmpty())
                         Sorry no available language has been specified.
                     @else
-                        @foreach ($book->lenguages as $lenguage)
-                            <span class="badge rounded-pill bg-success ms-1">{{ $lenguage->name }}</span>
+                        @foreach ($book->languages as $language)
+                            <span class="badge rounded-pill bg-success ms-1">{{ $language->name }}</span>
                         @endforeach
                     @endif
                 </li>

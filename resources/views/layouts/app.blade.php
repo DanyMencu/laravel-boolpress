@@ -66,6 +66,13 @@
                                 @if(Request::route()->getName() == 'admin.books.create') active @endif
                                 ">Add New Book</a>
                             </li>
+                            {{-- Index/Languages list --}}
+                            <li class="nav-item">
+                                <a href="{{ route('admin.languages') }}" class="nav-link
+                                @if(Request::route()->getName() == 'admin.languages') active @endif
+                                ">Languages List</a>
+                            </li>
+                            
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

@@ -19,7 +19,7 @@
                             <a href="{{ route('admin.books.create') }}">Register new book?</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.lenguages.index') }}">Lenguages</a>
+                            <a href="{{ route('admin.languages') }}">Languages</a>
                         </li>
                     </ul>
                 </div>

@@ -2,18 +2,18 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center my-3">Lenguages and books available</h1>
+        <h1 class="text-center my-3">Languages and books available</h1>
         <div class="d-flex justify-content-center">
-            @foreach ($lenguages as $lenguage)
+            @foreach ($languages as $language)
                 <ul class="list-group text-center mx-1">
                     <li class="list-group-item list-group-item-primary">
-                        {{ $lenguage->name }}
+                        {{ $language->name }}
                     </li>
     
-                    @if ( $lenguage->books->isEmpty() )
-                        Sorry, no books available for this lenguage.
+                    @if ( $language->books->isEmpty() )
+                        Sorry, no books available for this language.
                     @else
-                        @foreach ($lenguage->books as $book)
+                        @foreach ($language->books as $book)
                             <li class="list-group-item">
                                 <a class="list-group-item-action" href="{{ route('admin.books.show', $book->slug) }}">
                                     {{ $book->title }}
