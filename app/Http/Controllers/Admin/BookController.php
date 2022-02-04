@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 use App\Book;
 use App\Genre;
+use App\Lenguage;
 
 class BookController extends Controller
 {
@@ -33,9 +34,10 @@ class BookController extends Controller
     {
         //Find genres
         $genres = Genre::all();
+        $lenguages = Lenguage::all();
 
         //Add new book
-        return view('admin.books.create', compact('genres'));
+        return view('admin.books.create', compact('genres', 'lenguages'));
     }
 
     /**
@@ -80,6 +82,11 @@ class BookController extends Controller
 
         $new_book->fill($data);
         $new_book->save();
+
+        //Save realtion between book and lenguages selected in a pivot table
+        if(array_key_exists('lenguages', $data)) {
+            $new_book->lenguages()->attach($data['lenguages']);
+        }
 
         return redirect()->route('admin.books.show', $new_book->slug);
     }

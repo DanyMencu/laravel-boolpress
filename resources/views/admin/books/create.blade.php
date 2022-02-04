@@ -70,6 +70,23 @@
                 @enderror
             </div>
 
+            {{-- Lenguages --}}
+            <div class="mb-3">
+                <label class="form-label">Lenguages available:</label>
+                @foreach ($lenguages as $lenguage)
+                    <input type="checkbox" class="ms-3" name="lenguages[]" id="lenguage{{ $loop->iteration}}" value="{{ $lenguage->id}}"
+                    @if (in_array($lenguage->id, old('lenguages', []))) checked @endif>
+                    <label class="me-3" for="lenguage{{ $loop->iteration}}">
+                        {{ $lenguage->name }}
+                    </label>
+                @endforeach
+                
+                {{-- lenguages error advertising --}}
+                @error('lenguages')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
             <button class="btn btn-success" type="submit">Add new book</button>
         </form>
     </div>
