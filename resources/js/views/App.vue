@@ -7,9 +7,29 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "App",
     component: {},
+    data() {
+        return {
+            books: null,
+        }
+    },
+    created() {
+        this.getBooks();
+    },
+    methods: {
+        getBooks() {
+            axios.get('http://127.0.0.1:8000/api/books')
+                .then(res =>{
+                    console.log(res);
+
+                    this.books = res.data;
+                });
+        }
+    },
 }
 </script>
 
