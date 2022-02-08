@@ -4,31 +4,59 @@
             Library Books Archive
         </div>
         <hr>
-        <div class="container">
-            <div class="row justify-content-center my-5" v-if="books">
+        <div>
+            <!-- Books archive -->
+            <section class="container" v-if="books">
+                <div class="row justify-content-center my-4">
+                    <!-- Book card -->
                 <div class="col-5 book-card" v-for="book in books" :key="`book-${ book.id }`">
                     <h2 class="t">{{ book.title }}</h2>
                     <div class="mb-3 font-italic">{{ formatDate(book.created_at) }}</div>
                     <h5 class="mb-2">{{ book.author }}</h5>
                     <p>{{ getExcerpt(book.content, 150) }}</p>
                 </div>
-            </div>
-            <div class="content" v-else>
-                Loading books...
-            </div>
+                </div>
+                
+                <!-- Pagination -->
+                <button class="btn btn-primary mx-1"
+                    :disabled="pagination.current === 1"
+                    @click="getBooks(pagination.current - 1)">
+                    Prev
+                </button>
+
+                <button class="btn mx-1" :class="pagination.current === i ? 'btn-primary' : 'btn-secondary'"
+                    v-for="i in pagination.last" :key="`page-${i}`"
+                    @click="getBooks(i)">
+                    {{ i }}
+                </button>
+
+                <button class="btn btn-primary mx-1"
+                    :disabled="pagination.current === pagination.last"
+                    @click="getBooks(pagination.current + 1)">
+                    Next
+                </button>
+            </section>
+
+            <!-- Loader -->
+            <Loader v-else>
+
         </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Loader from '../components/Loader.vue';
 
 export default {
     name: "App",
-    component: {},
+    component: {
+        Loader,
+    },
     data() {
         return {
             books: null,
+            pagination: null,
         }
     },
     created() {
@@ -37,12 +65,16 @@ export default {
     methods: {
 
         /* Take all books from axios */
-        getBooks() {
-            axios.get('http://127.0.0.1:8000/api/books')
+        getBooks(page = 1) {
+            axios.get(`http://127.0.0.1:8000/api/books?page=${page}`)
                 .then(res =>{
                     console.log(res);
 
-                    this.books = res.data;
+                    this.books = res.data.data;
+                    this.pagination = {
+                        current: res.data.current_page,
+                        last: res.data.last_page
+                    }
                 });
         },
 
