@@ -1918,6 +1918,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
@@ -1931,6 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getBooks();
   },
   methods: {
+    /* Take all books from axios */
     getBooks: function getBooks() {
       var _this = this;
 
@@ -1956,7 +1971,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".content {\n  text-align: center;\n}\n.title {\n  font-size: 84px;\n}\n.m-b-md {\n  margin-bottom: 30px;\n}", ""]);
+exports.push([module.i, ".content {\n  text-align: center;\n}\n.title {\n  font-size: 60px;\n}\n.book-card {\n  border: 1px solid #000;\n  margin: 10px;\n  padding: 1rem;\n}", ""]);
 
 // exports
 
@@ -3072,20 +3087,46 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "content" }, [
+    _c("div", { staticClass: "title my-5" }, [
+      _vm._v("\n        Library Books Archive\n    "),
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _vm.books
+        ? _c(
+            "div",
+            { staticClass: "row justify-content-center my-5" },
+            _vm._l(_vm.books, function (book) {
+              return _c(
+                "div",
+                { key: "book-" + book.id, staticClass: "col-5 book-card" },
+                [
+                  _c("h2", { staticClass: "t" }, [_vm._v(_vm._s(book.title))]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-3 font-italic" }, [
+                    _vm._v(_vm._s(book.created_at)),
+                  ]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "mb-2" }, [
+                    _vm._v(_vm._s(book.author)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(book.content))]),
+                ]
+              )
+            }),
+            0
+          )
+        : _c("div", { staticClass: "content" }, [
+            _vm._v("\n            Loading books...\n        "),
+          ]),
+    ]),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "title m-b-md" }, [
-        _vm._v("\n        Library Front-office Site\n    "),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -1,7 +1,21 @@
 <template>
     <div class="content">
-        <div class="title m-b-md">
-            Library Front-office Site
+        <div class="title my-5">
+            Library Books Archive
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row justify-content-center my-5" v-if="books">
+                <div class="col-5 book-card" v-for="book in books" :key="`book-${ book.id }`">
+                    <h2 class="t">{{ book.title }}</h2>
+                    <div class="mb-3 font-italic">{{ book.created_at }}</div>
+                    <h5 class="mb-2">{{ book.author }}</h5>
+                    <p>{{ book.content }}</p>
+                </div>
+            </div>
+            <div class="content" v-else>
+                Loading books...
+            </div>
         </div>
     </div>
 </template>
@@ -21,6 +35,7 @@ export default {
         this.getBooks();
     },
     methods: {
+        /* Take all books from axios */
         getBooks() {
             axios.get('http://127.0.0.1:8000/api/books')
                 .then(res =>{
@@ -39,10 +54,12 @@ export default {
     }
 
     .title {
-        font-size: 84px;
+        font-size: 60px;
     }
 
-    .m-b-md {
-        margin-bottom: 30px;
+    .book-card {
+        border: 1px solid #000;
+        margin: 10px;
+        padding: 1rem;
     }
 </style>
