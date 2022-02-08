@@ -1953,6 +1953,22 @@ __webpack_require__.r(__webpack_exports__);
         console.log(res);
         _this.books = res.data;
       });
+    },
+
+    /* Change date format */
+    formatDate: function formatDate(bookDate) {
+      var date = new Date(bookDate);
+      var formatted = new Intl.DateTimeFormat('en-GB').format(date);
+      return formatted;
+    },
+
+    /* Limit the number of characters */
+    getExcerpt: function getExcerpt(content, maxLength) {
+      if (content.length > maxLength) {
+        return content.substr(0, maxLength) + '...';
+      }
+
+      return content;
     }
   }
 });
@@ -3107,14 +3123,14 @@ var render = function () {
                   _c("h2", { staticClass: "t" }, [_vm._v(_vm._s(book.title))]),
                   _vm._v(" "),
                   _c("div", { staticClass: "mb-3 font-italic" }, [
-                    _vm._v(_vm._s(book.created_at)),
+                    _vm._v(_vm._s(_vm.formatDate(book.created_at))),
                   ]),
                   _vm._v(" "),
                   _c("h5", { staticClass: "mb-2" }, [
                     _vm._v(_vm._s(book.author)),
                   ]),
                   _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(book.content))]),
+                  _c("p", [_vm._v(_vm._s(_vm.getExcerpt(book.content, 150)))]),
                 ]
               )
             }),

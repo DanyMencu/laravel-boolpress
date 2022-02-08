@@ -8,9 +8,9 @@
             <div class="row justify-content-center my-5" v-if="books">
                 <div class="col-5 book-card" v-for="book in books" :key="`book-${ book.id }`">
                     <h2 class="t">{{ book.title }}</h2>
-                    <div class="mb-3 font-italic">{{ book.created_at }}</div>
+                    <div class="mb-3 font-italic">{{ formatDate(book.created_at) }}</div>
                     <h5 class="mb-2">{{ book.author }}</h5>
-                    <p>{{ book.content }}</p>
+                    <p>{{ getExcerpt(book.content, 150) }}</p>
                 </div>
             </div>
             <div class="content" v-else>
@@ -35,6 +35,7 @@ export default {
         this.getBooks();
     },
     methods: {
+
         /* Take all books from axios */
         getBooks() {
             axios.get('http://127.0.0.1:8000/api/books')
@@ -43,7 +44,25 @@ export default {
 
                     this.books = res.data;
                 });
-        }
+        },
+
+        /* Change date format */
+        formatDate(bookDate) {
+            const date = new Date(bookDate);
+
+            const formatted = new Intl.DateTimeFormat('en-GB').format(date);
+            
+            return formatted;
+        },
+
+        /* Limit the number of characters */
+        getExcerpt(content, maxLength) {
+            if(content.length > maxLength){
+                return content.substr(0, maxLength) + '...';
+            }
+
+            return content;
+        },
     },
 }
 </script>
