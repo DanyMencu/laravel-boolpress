@@ -18,12 +18,14 @@
                 <p>{{ book.content }}</p>
 
                 <!-- Languages -->
-                <span class="badge badge-success py-1 px-2 mr-1"
+<!--                 <span class="badge badge-success py-1 px-2 mr-1"
                     v-for="language in book.languages"
                     :key="`language-${language.id}`"
                 >
                     {{ language.name }}
-                </span>
+                </span> -->
+                <Bedge v-for="language in book.languages"
+                    :key="`language-${language.id}`" :name="language.name"/>
             </div>
             <router-link class="btn btn-primary mb-5" :to="{ name: 'books'}">Back to archive</router-link>
         </div>
@@ -35,11 +37,13 @@
 <script>
 import axios from "axios";
 import Loader from "../components/Loader";
+import Bedge from "../components/Bedge"
 
 export default {
     name: "BookDetails",
     components: {
         Loader,
+        Bedge,
     },
     data() {
         return {
