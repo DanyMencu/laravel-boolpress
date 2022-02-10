@@ -2,9 +2,25 @@
     <section>
         <div v-if="book">
             <div class="text-center mb-5">
+                <!-- Title -->
                 <h1 class="mb-3">{{ book.title }}</h1>
+
+                <!-- Genre -->
+                <p><strong>Genre: </strong>{{ book.genre.name }}</p>
+
+                <!-- Author -->
                 <h4 class="mb-3">{{ book.author }}</h4>
+
+                <!-- Content -->
                 <p>{{ book.content }}</p>
+
+                <!-- Languages -->
+                <span class="badge badge-success py-1 px-2 mr-1"
+                    v-for="language in book.languages"
+                    :key="`language-${language.id}`"
+                >
+                    {{ language.name }}
+                </span>
             </div>
             <router-link class="btn btn-primary mb-5" :to="{ name: 'books'}">Back to archive</router-link>
         </div>

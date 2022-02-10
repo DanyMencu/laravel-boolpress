@@ -2007,6 +2007,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3594,17 +3610,44 @@ var render = function () {
         ? _c(
             "div",
             [
-              _c("div", { staticClass: "text-center mb-5" }, [
-                _c("h1", { staticClass: "mb-3" }, [
-                  _vm._v(_vm._s(_vm.book.title)),
-                ]),
-                _vm._v(" "),
-                _c("h4", { staticClass: "mb-3" }, [
-                  _vm._v(_vm._s(_vm.book.author)),
-                ]),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(_vm.book.content))]),
-              ]),
+              _c(
+                "div",
+                { staticClass: "text-center mb-5" },
+                [
+                  _c("h1", { staticClass: "mb-3" }, [
+                    _vm._v(_vm._s(_vm.book.title)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c("strong", [_vm._v("Genre: ")]),
+                    _vm._v(_vm._s(_vm.book.genre.name)),
+                  ]),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "mb-3" }, [
+                    _vm._v(_vm._s(_vm.book.author)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.book.content))]),
+                  _vm._v(" "),
+                  _vm._l(_vm.book.languages, function (language) {
+                    return _c(
+                      "span",
+                      {
+                        key: "language-" + language.id,
+                        staticClass: "badge badge-success py-1 px-2 mr-1",
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(language.name) +
+                            "\n            "
+                        ),
+                      ]
+                    )
+                  }),
+                ],
+                2
+              ),
               _vm._v(" "),
               _c(
                 "router-link",

@@ -19,7 +19,7 @@ class BookController extends Controller
 
     //Book details
     public function show($slug) {
-        $book = Book::where('slug', $slug)->first();
+        $book = Book::where('slug', $slug)->with(['genre', 'languages'])->first();
 
         return response()->json($book);
     }
