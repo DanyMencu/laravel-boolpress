@@ -16,4 +16,11 @@ class BookController extends Controller
 
         return response()->json($books);
     }
+
+    //Book details
+    public function show($slug) {
+        $book = Book::where('slug', $slug)->first();
+
+        return response()->json($book);
+    }
 }

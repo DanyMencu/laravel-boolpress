@@ -19,4 +19,7 @@ Route::namespace('Api')->group(function () {
 
     //Books Archive
     Route::get('/books', 'BookController@index');
+
+    //Book details
+    Route::get('/books/{slug}','BookController@show');
 });

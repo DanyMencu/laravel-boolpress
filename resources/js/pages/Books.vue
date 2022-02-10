@@ -9,12 +9,14 @@
             <section class="container" v-if="books">
                 <div class="row justify-content-center my-4">
                     <!-- Book card -->
-                <div class="col-5 book-card" v-for="book in books" :key="`book-${ book.id }`">
-                    <h2 class="t">{{ book.title }}</h2>
-                    <div class="mb-3 font-italic">{{ formatDate(book.created_at) }}</div>
-                    <h5 class="mb-2">{{ book.author }}</h5>
-                    <p>{{ getExcerpt(book.content, 150) }}</p>
-                </div>
+                    <div class="col-5 book-card" v-for="book in books" :key="`book-${ book.id }`">
+                        <h2 class="t">{{ book.title }}</h2>
+                        <div class="mb-3 font-italic">{{ formatDate(book.created_at) }}</div>
+                        <h5 class="mb-2">{{ book.author }}</h5>
+                        <p>{{ getExcerpt(book.content, 150) }}</p>
+                        <router-link :to="{ name: 'book-details', params: { slug: book.slug } }">Read more about...</router-link>
+                    </div>
+                
                 </div>
                 
                 <!-- Pagination -->
@@ -49,7 +51,7 @@ import axios from 'axios';
 import Loader from '../components/Loader.vue';
 
 export default {
-    name: "App",
+    name: "Book",
     components: {
         Loader,
     },
