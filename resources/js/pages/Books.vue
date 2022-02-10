@@ -99,6 +99,7 @@ export default {
 }
 </script>
 
+
 <style lang="scss">
     .content {
         text-align: center;

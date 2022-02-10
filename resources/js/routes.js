@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 
 //Components for route
 import Home from './pages/Home';
-import About from './pages/About';
+import Books from './pages/Books';
 
 //Active router in Vue
 Vue.use(VueRouter);
@@ -12,7 +12,7 @@ Vue.use(VueRouter);
 //Definition of routes
 const router = new VueRouter({
     mode: 'history',
-    /* linkExactActiveClass: 'active', */
+    linkExactActiveClass: 'active',
     routes: [
         {
             //Homepage
@@ -21,10 +21,10 @@ const router = new VueRouter({
             component: Home,
         },
         {
-            //About
-            path: '/about',
-            name: 'about',
-            component: About,
+            //books
+            path: '/books',
+            name: 'books',
+            component: Books,
         },
     ],
 });
