@@ -36,8 +36,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="{{ url('guests.home') }}" target='_blank' class="nav-link
-                            @if(Request::route()->getName() == 'guests.home') active @endif">Public Homepage</a>
+                            <a href="{{ url('/') }}" target='_blank' class="nav-link">Public Homepage</a>
                         </li>
                     </ul>
 

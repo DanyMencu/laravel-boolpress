@@ -22,6 +22,6 @@ class Book extends Model
 
     //Relation with languages
     public function languages() {
-        return $this->belongsToMany('App\Language',);
+        return $this->belongsToMany('App\Language');
     }
 }
