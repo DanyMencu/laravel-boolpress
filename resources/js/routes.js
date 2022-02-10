@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 import Home from './pages/Home';
 import Books from './pages/Books';
 import BookDetails from './pages/BookDetails';
+import NotFound from './pages/NotFound';
 
 //Active router in Vue
 Vue.use(VueRouter);
@@ -32,6 +33,11 @@ const router = new VueRouter({
             path: '/books/:slug',
             name: 'book-details',
             component: BookDetails,
+        },
+        {
+            path: '*',
+            name: 'not-found',
+            component: NotFound,
         },
     ],
 });

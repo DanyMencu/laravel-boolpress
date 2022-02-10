@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-        <h1>Footer HERE</h1>
-    </div>
+    <footer class="fake-footer mt-5">
+        <h3>Footer HERE</h3>
+    </footer>
 </template>
 
 <script>
@@ -11,6 +11,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
+    .fake-footer {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 </style>

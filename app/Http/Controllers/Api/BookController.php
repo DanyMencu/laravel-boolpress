@@ -21,6 +21,10 @@ class BookController extends Controller
     public function show($slug) {
         $book = Book::where('slug', $slug)->with(['genre', 'languages'])->first();
 
+        if(! $book) {
+            $book['not_found'] = true;
+        }
+
         return response()->json($book);
     }
 }
