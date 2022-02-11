@@ -28,6 +28,17 @@
                 <li class="list-group-item">
                     <strong>Author: </strong> {{ $book->author }}
                 </li>
+                {{-- Dates --}}
+                <li class="list-group-item">
+                    @if (  $book->created_at->notEqualTo($book->created_at))
+                        <strong>Book register: </strong> {{  $book->created_at->isoFormat('dddd DD/MM/YYYY') }} ( {{ $book->created_at->diffForHumans() }} )
+                </li>
+                @else
+                <strong>Book register: </strong> {{ $book->created_at->format('l d/m/Y') }} 
+                <li class="list-group-item">
+                    <strong>Updated: </strong> {{ $book->updated_at->diffForHumans() }}
+                @endif
+                </li>
                 {{-- Language --}}
                 <li class="list-group-item">
                     <strong>Language: </strong> 

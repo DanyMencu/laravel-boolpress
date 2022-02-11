@@ -18,12 +18,6 @@
                 <p>{{ book.content }}</p>
 
                 <!-- Languages -->
-<!--                 <span class="badge badge-success py-1 px-2 mr-1"
-                    v-for="language in book.languages"
-                    :key="`language-${language.id}`"
-                >
-                    {{ language.name }}
-                </span> -->
                 <Bedge v-for="language in book.languages"
                     :key="`language-${language.id}`" :name="language.name"/>
             </div>
