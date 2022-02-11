@@ -16,6 +16,10 @@
                         <!-- Component matched with the route BOOKS-->
                         <router-link class="nav-link" :to="{name: 'books'}">All books</router-link>
                     </li>
+                    <li class="nav-item">
+                        <!-- Component matched with the route Languages-->
+                        <router-link class="nav-link" :to="{name: 'languages-list'}">Languages</router-link>
+                    </li>
                 </ul>
             </div>
         </nav>

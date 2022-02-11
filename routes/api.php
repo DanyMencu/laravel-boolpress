@@ -22,4 +22,7 @@ Route::namespace('Api')->group(function () {
 
     //Book details
     Route::get('/books/{slug}','BookController@show');
+
+    //Languages list
+    Route::get('/languages', 'LanguageController@index');
 });

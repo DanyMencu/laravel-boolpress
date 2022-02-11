@@ -10,7 +10,7 @@
                 <div class="row justify-content-center my-4">
                     <!-- Book card -->
                     <div class="col-5 book-card" v-for="book in books" :key="`book-${ book.id }`">
-                        <h2 class="t">{{ book.title }}</h2>
+                        <h2>{{ book.title }}</h2>
                         <div class="mb-3 font-italic">{{ formatDate(book.created_at) }}</div>
                         <h5 class="mb-2">{{ book.author }}</h5>
                         <p>{{ getExcerpt(book.content, 150) }}</p>
@@ -70,8 +70,6 @@ export default {
         getBooks(page = 1) {
             axios.get(`http://127.0.0.1:8000/api/books?page=${page}`)
                 .then(res =>{
-                    console.log(res);
-
                     this.books = res.data.data;
                     this.pagination = {
                         current: res.data.current_page,
@@ -102,7 +100,7 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
     .content {
         text-align: center;
     }
