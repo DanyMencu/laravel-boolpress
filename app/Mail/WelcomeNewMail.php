@@ -11,14 +11,18 @@ class WelcomeNewMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $name;
+    private $date_time;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name, $date_time)
     {
-        //
+        $this->name = $name;
+        $this->date_time = $date_time;
     }
 
     /**
@@ -28,6 +32,10 @@ class WelcomeNewMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.welcome');
+        return $this->view('mails.welcome')
+                    ->with([
+                        'name' => $this->name,
+                        'date_time' => $this->date_time,
+                    ]);
     }
 }
