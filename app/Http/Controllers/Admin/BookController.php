@@ -59,14 +59,14 @@ class BookController extends Controller
             'max' => 'Max :max characters allowed for the :attribute',
             'unique' => 'Sorry but the :attribute must be unique.',
         ]); */
-        $request->validate($this->validation_rules(null), $this->validation_messages());
+        $request->validate($this->validation_rules(), $this->validation_messages());
 
         //Register new book
         $data = $request->all();
 
         //Add image if is available
         if( array_key_exists( 'image', $data ) ) {
-            $img_path = Storage::put('books-image', $data['image']);
+            $img_path = Storage::put('books-images', $data['image']);
             $data['image'] = $img_path;
         }
 
@@ -147,7 +147,7 @@ class BookController extends Controller
     {
         //Update book details
         //Validation
-        $request->validate($this->validation_rules($id), $this->validation_messages());
+        $request->validate($this->validation_rules(), $this->validation_messages());
 
         $data = $request->all();
 
@@ -203,12 +203,10 @@ class BookController extends Controller
 
 
     //*Validation RULES
-    private function validation_rules($id) {
-        //Validation if book id there is or not
-        $validation_id = $id != null ? ',title,' . $id : '';
+    private function validation_rules() {
 
         return [
-            'title' => 'required|unique:books' . $validation_id,
+            'title' => 'required',
             'author' => 'required|max:255',
             'content' => 'required',
             'genre_id' => 'nullable|exists:genres,id',
@@ -219,7 +217,6 @@ class BookController extends Controller
         return [
             'required' => 'The :attribute is a required field!',
             'max' => 'Max :max characters allowed for the :attribute',
-            'unique' => 'Sorry but the :attribute must be unique.',
             'genre_id.exists' => 'Sorry but the genre selected does not exist',
         ];
     }

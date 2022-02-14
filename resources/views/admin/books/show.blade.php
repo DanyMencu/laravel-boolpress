@@ -54,6 +54,13 @@
                 <li class="list-group-item">
                     <strong>Content: </strong> <br> {{ $book->content }}
                 </li>
+                {{-- Image --}}
+                @if ($book->image)
+                <li class="list-group-item">
+                    <img class="img-fluid" src="{{ asset( 'storage/' . $book->image ) }}" alt="{{ $book->title }}">
+                </li>
+                @endif
+                {{-- ACTIONS --}}
                 <li class="list-group-item">
                     <strong>Actions: </strong>
                     <a href="{{ route('admin.books.index') }}" class="btn btn-primary mx-2">Return to list</a>

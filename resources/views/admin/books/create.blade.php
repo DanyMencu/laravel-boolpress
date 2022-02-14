@@ -20,7 +20,7 @@
 
             {{-- Title --}}
             <div class="mb-3">
-                <label for="title" class="form-label">Title *</label>
+                <label for="title" class="form-label">Title: *</label>
                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}">
 
                 {{-- Title error advertising --}}
@@ -31,7 +31,7 @@
 
             {{-- Author --}}
             <div class="mb-3">
-                <label for="author" class="form-label">Author *</label>
+                <label for="author" class="form-label">Author: *</label>
                 <input type="text" name="author" id="author" class="form-control" value="{{ old('author') }}">
 
                 {{-- Author error advertising --}}
@@ -42,7 +42,7 @@
 
             {{-- Genre --}}
             <div class="mb-3">
-                <label for="genre_id" class="form-label">Category</label>
+                <label for="genre_id" class="form-label">Category:</label>
                 <select name="genre_id" id="genre_id" class="form-control">
                     <option value="">No genre</option>
                     @foreach ($genres as $genre)
@@ -61,7 +61,7 @@
 
             {{-- Content --}}
             <div class="mb-3">
-                <label for="content">Content *</label>
+                <label for="content">Content: *</label>
                 <textarea name="content" id="content" class="form-control" rows="6">{{ old('content') }}</textarea>
 
                 {{-- Content error advertising --}}
@@ -72,8 +72,8 @@
 
             {{-- Image --}}
             <div class="mb-3">
-                <lablel class="form-label" for="image">Image</lablel>
-                <input type="file" name="image" id="image">
+                <lablel class="form-label" for="image">Image: </lablel>
+                <input type="file" name="image" id="image" class="form-control">
 
                 {{-- Image error advertising --}}
                 @error('image')
