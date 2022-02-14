@@ -12,7 +12,7 @@ class BookController extends Controller
     //Book archive
     public function index() {
         //Get all books
-        $books = Book::paginate(4);
+        $books = Book::orderBy('id', 'desc')->paginate(4);
 
         return response()->json($books);
     }
@@ -23,6 +23,8 @@ class BookController extends Controller
 
         if(! $book) {
             $book['not_found'] = true;
+        } elseif($book->image) {
+            $book->image = url('storage/' . $book->image);
         }
 
         return response()->json($book);

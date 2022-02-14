@@ -205,6 +205,11 @@ class BookController extends Controller
         //Delete a book record
         $book = Book::find($id);
 
+        //Remouve local image if already exists
+        if ($book->image) {
+            Storage::delete($book->image);
+        }
+
         $book->delete();
 
         return redirect()->route('admin.books.index')->with('deleted', $book->title);

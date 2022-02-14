@@ -14,6 +14,11 @@
                 <!-- Author -->
                 <h4 class="mb-3">{{ book.author }}</h4>
 
+                <!-- Image -->
+                <figure v-if="book.image">
+                    <img :src="book.image" :alt="book.title">
+                </figure>
+
                 <!-- Content -->
                 <p>{{ book.content }}</p>
 
