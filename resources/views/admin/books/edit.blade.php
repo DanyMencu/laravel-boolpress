@@ -92,7 +92,7 @@
                 <label class="form-label">Languages:</label>
                 @foreach ($languages as $language)
                     <input type="checkbox" class="ms-3" name="languages[]" id="language{{ $loop->iteration}}" value="{{ $language->id}}"
-                    @if ($errors->any() && in_array($language->id, old($book->id)))
+                    @if ($errors->any() && in_array($language->id, old('languages')))
                         checked
                     @elseif ( !$errors->any() && $book->languages->contains($language->id))
                         checked

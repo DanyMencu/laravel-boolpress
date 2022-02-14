@@ -1,7 +1,7 @@
 <template>
     <section>
         <div v-if="book">
-            <div class="text-center mb-5">
+            <div class="text-center mb-5 container">
                 <!-- Title -->
                 <h1 class="mb-3">{{ book.title }}</h1>
 
@@ -14,13 +14,17 @@
                 <!-- Author -->
                 <h4 class="mb-3">{{ book.author }}</h4>
 
-                <!-- Image -->
-                <figure v-if="book.image">
-                    <img :src="book.image" :alt="book.title">
-                </figure>
+                <div class="row">
+                    <!-- Image -->
+                    <figure v-if="book.image" class="col-6">
+                        <img :src="book.image" :alt="book.title">
+                    </figure>
 
-                <!-- Content -->
-                <p>{{ book.content }}</p>
+                    <!-- Content -->
+                    <p v-if="book.image" class="col-6 text-left">{{ book.content }}</p>
+                    <p v-else class="col-12">{{ book.content }}</p>
+
+                </div>
 
                 <!-- Languages -->
                 <Bedge v-for="language in book.languages"

@@ -12,7 +12,7 @@ class BookController extends Controller
     //Book archive
     public function index() {
         //Get all books
-        $books = Book::orderBy('id', 'desc')->paginate(4);
+        $books = Book::orderBy('created_at', 'desc')->paginate(4);
 
         return response()->json($books);
     }

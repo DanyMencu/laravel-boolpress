@@ -2054,6 +2054,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3879,7 +3883,7 @@ var render = function () {
             [
               _c(
                 "div",
-                { staticClass: "text-center mb-5" },
+                { staticClass: "text-center mb-5 container" },
                 [
                   _c("h1", { staticClass: "mb-3" }, [
                     _vm._v(_vm._s(_vm.book.title)),
@@ -3897,15 +3901,23 @@ var render = function () {
                     _vm._v(_vm._s(_vm.book.author)),
                   ]),
                   _vm._v(" "),
-                  _vm.book.image
-                    ? _c("figure", [
-                        _c("img", {
-                          attrs: { src: _vm.book.image, alt: _vm.book.title },
-                        }),
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.book.content))]),
+                  _c("div", { staticClass: "row" }, [
+                    _vm.book.image
+                      ? _c("figure", { staticClass: "col-6" }, [
+                          _c("img", {
+                            attrs: { src: _vm.book.image, alt: _vm.book.title },
+                          }),
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.book.image
+                      ? _c("p", { staticClass: "col-6 text-left" }, [
+                          _vm._v(_vm._s(_vm.book.content)),
+                        ])
+                      : _c("p", { staticClass: "col-12" }, [
+                          _vm._v(_vm._s(_vm.book.content)),
+                        ]),
+                  ]),
                   _vm._v(" "),
                   _vm._l(_vm.book.languages, function (language) {
                     return _c("Bedge", {
