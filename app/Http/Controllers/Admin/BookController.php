@@ -66,8 +66,7 @@ class BookController extends Controller
 
         //Add image if is available
         if( array_key_exists( 'image', $data ) ) {
-            $img_path = Storage::put('books-images', $data['image']);
-            $data['image'] = $img_path;
+            $data['image'] = Storage::put('books-images', $data['image']);
         }
 
         //Create a new book
@@ -152,6 +151,16 @@ class BookController extends Controller
         $data = $request->all();
 
         $book = Book::find($id);
+
+        //Add or remove image at folder if it exists
+        if( array_key_exists('image', $data) ) {
+            //Remouve if image already exists
+            if( $book->image ) {
+                Storage::delete($book->image);
+            }
+
+            $data['image'] = Storage::put( 'books-images', $data['image'] );
+        }
 
         //Slug update if title is changed
         if($data['title'] != $book->title) {

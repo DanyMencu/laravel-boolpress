@@ -59,6 +59,10 @@
                 <li class="list-group-item">
                     <img class="img-fluid" src="{{ asset( 'storage/' . $book->image ) }}" alt="{{ $book->title }}">
                 </li>
+                @else
+                <li class="list-group-item">
+                    <span>No image available</span>
+                </li>
                 @endif
                 {{-- ACTIONS --}}
                 <li class="list-group-item">

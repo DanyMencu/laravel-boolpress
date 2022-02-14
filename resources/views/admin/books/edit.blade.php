@@ -15,11 +15,11 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.books.update', $book->id) }}" method="POST">
+        <form action="{{ route('admin.books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 
-        {{-- Title --}}
+            {{-- Title --}}
             <div class="mb-3">
                 <label for="title" class="form-label">Title *</label>
                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $book->title) }}">
@@ -67,6 +67,22 @@
 
                 {{-- Content error advertising --}}
                 @error('content')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            {{-- Image --}}
+            <div class="mb-3">
+                <lablel class="form-label" for="image">Image: </lablel>
+                @if ($book->image)
+                <figure class="mb-3">
+                    <img class="img-fluid" src="{{ asset( 'storage/' . $book->image ) }}" alt="{{ $book->title }}">
+                </figure>
+                @endif
+                <input type="file" name="image" id="image" class="form-control">
+            
+                {{-- Image error advertising --}}
+                @error('image')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
