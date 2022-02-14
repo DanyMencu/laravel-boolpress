@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 use App\Book;
 use App\Genre;
@@ -62,6 +63,12 @@ class BookController extends Controller
 
         //Register new book
         $data = $request->all();
+
+        //Add image if is available
+        if( array_key_exists( 'image', $data ) ) {
+            $img_path = Storage::put('books-image', $data['image']);
+            $data['image'] = $img_path;
+        }
 
         //Create a new book
         $new_book = new Book();
@@ -205,6 +212,7 @@ class BookController extends Controller
             'author' => 'required|max:255',
             'content' => 'required',
             'genre_id' => 'nullable|exists:genres,id',
+            'image' => 'nullable|file|mimes:jpeg,bmp,png,jpg',
         ];
     }
     private function validation_messages() {

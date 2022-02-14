@@ -13,6 +13,7 @@ class Book extends Model
         'author',
         'slug',
         'content',
+        'image',
     ];
 
     //Relation with genres
