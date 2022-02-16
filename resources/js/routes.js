@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Books from './pages/Books';
 import BookDetails from './pages/BookDetails';
 import LanguagesList from './pages/LanguagesList';
+import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
 //Active router in Vue
@@ -40,6 +41,12 @@ const router = new VueRouter({
             path: '/languages',
             name: 'languages-list',
             component: LanguagesList,
+        },
+        {
+            //Contatc us
+            path: '/contact',
+            name: 'contact',
+            component: Contact,
         },
         {
             path: '*',

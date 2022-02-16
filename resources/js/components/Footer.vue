@@ -1,6 +1,6 @@
 <template>
     <footer class="fake-footer mt-5">
-        <h3>Footer HERE</h3>
+        <!-- <h3>Footer HERE</h3> -->
     </footer>
 </template>
 

@@ -25,4 +25,7 @@ Route::namespace('Api')->group(function () {
 
     //Languages list
     Route::get('/languages', 'LanguageController@index');
+
+    //Contact
+    Route::post('/contacts', 'ContactController@store');
 });
